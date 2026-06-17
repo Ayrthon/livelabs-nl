@@ -31,9 +31,46 @@
 
       body {
         font-family: Arial, Helvetica, sans-serif;
-        background: var(--bg);
+        background: transparent;
         color: var(--text);
         line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      .page-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+        background: var(--bg);
+      }
+
+      .page-bg__image {
+        position: absolute;
+        inset: -24px;
+        background: url("assets/bg-broadcast.jpg") center / cover no-repeat;
+        filter: blur(8px) saturate(1.15) brightness(0.7);
+        opacity: 0.5;
+        transform: scale(1.04);
+      }
+
+      .page-bg__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          160deg,
+          rgba(20, 20, 20, 0.55) 0%,
+          rgba(20, 20, 20, 0.72) 50%,
+          rgba(20, 20, 20, 0.82) 100%
+        );
+      }
+
+      header,
+      main,
+      footer {
+        position: relative;
+        z-index: 1;
       }
 
       a {
@@ -100,7 +137,6 @@
 
       .hero {
         padding: 90px 0 70px;
-        background: linear-gradient(180deg, #191919 0%, #141414 100%);
       }
 
       .hero-grid {
@@ -305,6 +341,11 @@
     </style>
   </head>
   <body>
+    <div class="page-bg" aria-hidden="true">
+      <div class="page-bg__image"></div>
+      <div class="page-bg__overlay"></div>
+    </div>
+
     <header>
       <div class="container nav">
         <div class="logo">
